@@ -1,0 +1,74 @@
+Link github: https://github.com/thanhbd194672/project_web_135250
+File hướng dẫn chạy và mô tả công việc của từng thành viên nhóm.
+Mô tả tính năng web:
+1. User
+- Trang chủ hiển thị ra danh sách món ăn có trong CSDL bao gồm đầy đủ thông tin của các món.
+- Chức năng tìm kiếm món ăn, bao gồm cả gợi ý.
+- Thực hiện đăng ký, đăng nhập và đăng xuất tài khoản.
+- Bấm vào thông tin chi tiết một món ăn -> hiện ra thông tin địa chỉ quán, user có thể theo dõi quán ăn, thả tim món ăn yêu thích.
+- Thêm review về quán ăn hoặc một món ăn của quán.
+- Xem trang cá nhân: bao gồm thông tin cơ bản của user, danh sách quán ăn theo dõi, danh sách món ăn yêu thích. Người có thể chỉnh sửa thông tin cá nhân, cập nhật ảnh đại diện.
+- Thêm feedback cho admin trang web.
+2. Admin
+- Thêm, sửa thông tin gian hàng.
+- Thêm sửa thông tin món ăn
+- Đọc feedback của người dùng
+
+Công việc của từng thành viên nhóm: 
+Thành: Làm trang quản lý của admin(thêm món ăn, quán ăn, chỉnh sửa địa chỉ quán ăn), thiết kế database
+Quốc Mạnh: Làm trang nhà hàng, các chức năng liên quan(review, quán ăn, món ăn yêu thích, lọc món ăn trong quán ăn) , thiết kế database
+Đức Mạnh: Làm trang chủ, đăng nhập, đăng ký, feedback về trang web, chức năng tìm kiếm món ăn trong trang chủ, lọc từ xấu
+Trung: làm trang profile(hiển thị nhà hàng, món ăn yêu thích, thay đổi thông tin cá nhân), wishlist, thiết kế database
+
+
+
+
+Project được phát triển trên XAMPP (APACHE+PHP).
+Sử dụng CSDL: POSTGRE SQL 15
+
+CÁCH CHẠY PROJECT
+CÀI ĐẶT
+- Cài đặt POSTGRES 15: Download tại https://www.postgresql.org/download/
+- Cài đặt XAMPP: Download tại https://www.apachefriends.org/download.html
+
+hoặc có thể cài đặt riêng APACHE và PHP mà không sử dụng XAMPP
+
+CONFIG
+Trong file php.ini:
+Bỏ comment hoặc thêm các dòng 
+extension=php_pdo_pgsql.dll
+extension=pgsql
+
+Trong file httpd.conf: (WEB được chạy mặc định trên port 80 của localhost)
+Nếu sử dụng XAMPP thêm các dòng:
+LoadModule php_module "c:/xampp/php/php8apache2_4.dll"
+<FilesMatch \.php$>
+SetHandler application/x-httpd-php
+</FilesMatch>
+LoadFile "C:/xampp/php/libpq.dll"
+
+Nếu không sử dụng xampp thì thêm vào các đường dẫn tương ứng khác.
+
+IMPORT DATABASE
+Database có thông tin đăng nhập mặc định trong file: connect_db.php
+<?php
+$host = "localhost";
+$user ="postgres";
+$pass = "postgres";	
+$db = "postgres";
+$db_connection = pg_connect("host=$host port=5432 dbname=$db user=$user password=$pass") or die ("could not connect to Server\n");      
+?>
+
+Sử dụng chức năng restore của PGADMIN4 cho CSDL postgres chọn file dulieu.sql được đính kèm trong file zip.
+
+Copy thư mục project vào thư mục: xampp\htdocs (nếu sử dụng apache là Apache24\htdocs)
+
+CHẠY PROJECT
+Sử dụng đường link:
+http://localhost/project/trangchu/foodinfo.php 
+Tài khoản admin:
+TK:$admin@gmail.com
+MK:$admin
+Tài khoản tạo sẵn:
+TK:manh@gmail.com
+MK:1
